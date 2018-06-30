@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+
+# ignore local database config
+config.database.local.js
