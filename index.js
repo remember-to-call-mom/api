@@ -1,8 +1,11 @@
 const cors = require('cors');
 const express = require('express');
+const finale = require('finale-rest');
+const bodyParser = require('body-parser');
 
 const config = require('./config');
 const Database = require('./lib/Database');
+const endpoints = require('./lib/endpoints');
 
 class WebServer {
   static setupDatabase() {
@@ -23,12 +26,15 @@ class WebServer {
       await this.database.connect();
     }
 
-    const app = express();
+    this.app = express();
 
-    app.use(cors());
+    this.app.use(cors());
+    this.app.use(bodyParser.json());
+
+    this.startFinale();
 
     this.server = await (new Promise((resolve, reject) => {
-      const server = app.listen(config.webserver.port, (error) => {
+      const server = this.app.listen(config.webserver.port, (error) => {
         if (error) {
           return reject(error);
         }
@@ -36,8 +42,15 @@ class WebServer {
         return resolve(server);
       });
     }));
+  }
 
-    return app;
+  startFinale() {
+    finale.initialize({
+      app: this.app,
+      sequelize: this.database.db,
+    });
+
+    endpoints(finale, this.database.db);
   }
 
   close() {

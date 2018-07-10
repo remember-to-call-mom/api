@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "918695cf-e6df-472f-b3fc-15d3de6d88f8",
+		"name": "Remember to Call Mom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all reminders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:1337/reminders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reminders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Verändern",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ownedBy\":\"4213e6bb-c9d4-44d0-b32d-e94a5222dfc7\",\n\t\"channel\":\"email\",\n\t\"title\":\"Call Mom\",\n\t\"min\":4,\n\t\"min-unit\":\"days\",\n\t\"max\":3,\n\t\"max-unit\":\"weeks\",\n\t\"limit\":false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1337/reminders/aa22e5d7-be70-4b29-a1dd-83d54a203561",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reminders",
+						"aa22e5d7-be70-4b29-a1dd-83d54a203561"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Erstellen",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"51438ec3-0811-4371-8764-b8da88f36deb\",\n\t\"ownedBy\":\"4213e6bb-c9d4-44d0-b32d-e94a5222dfc7\",\n\t\"channel\":\"email\",\n\t\"title\":\"Call Mom\",\n\t\"min\":4,\n\t\"min-unit\":\"days\",\n\t\"max\":3,\n\t\"max-unit\":\"weeks\",\n\t\"limit\":false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1337/reminders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reminders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:1337/reminders/51438ec3-0811-4371-8764-b8da88f36deb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reminders",
+						"51438ec3-0811-4371-8764-b8da88f36deb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
